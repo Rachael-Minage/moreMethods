@@ -21,14 +21,16 @@ class Account:
             return f"You have deposited {amount}, your balance is {self.balance}", self.deposits
 
     def withdrawal(self,amount):
-        if amount>self.balance:
+        self.transaction_cost = 100
+
+        if (amount+ self.transaction_cost)  > self.balance:
             return f"Your balance is {self.balance}, you cannot withdraw {amount}"
-        elif amount<=0:
+        elif (amount + self.transaction_cost)<=0:
             return f"You cannot withdraw {amount}"
         else:
-            self.transaction_cost = 100
+            
 
-            self.balance-=amount + self.transaction_cost
+            self.balance-=(amount + self.transaction_cost)
             
 
             # self.last_balance= self.balance-self.transaction_cost
@@ -47,5 +49,5 @@ class Account:
     #  Add a method to show the current balance
 
     def show_balance(self):
-        print(f"You have withdrawn{self.withdrawals}, transaction cost is {self.transaction_cost}, your balance is {self.balance}")
+        print(f"You have withdrawn {self.withdrawals[-1]}, transaction cost is {self.transaction_cost}, your balance is {self.balance}")
     
